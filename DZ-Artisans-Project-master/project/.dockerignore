@@ -1,0 +1,31 @@
+# Node modules (should not be copied, as dependencies will be installed in the container)
+node_modules
+npm-debug.log
+yarn.lock
+pnpm-lock.yaml
+
+# Environment variables (contains sensitive info)
+.env
+
+# Logs
+logs
+*.log
+
+# Ignore Docker-related files
+Dockerfile
+docker-compose.yml
+
+# Ignore Git-related files
+.git
+.gitignore
+
+# Ignore SSH keys and credentials
+ssh
+*.pub
+
+# OS/System files
+.DS_Store
+Thumbs.db
+
+# Database files (if using SQLite or similar)
+*.sql

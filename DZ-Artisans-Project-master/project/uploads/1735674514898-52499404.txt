@@ -1,0 +1,136 @@
+Voici une liste complète des commandes de configuration de base pour les **switches**, **VLANs**, **routeurs**, et la gestion des **configurations** dans **Cisco Packet Tracer**.
+
+---
+
+# **1. Configuration des Switches**
+### **Accéder au mode de configuration :**
+```
+enable               # Passer en mode privilégié
+configure terminal   # Mode de configuration globale
+```
+
+### **Configurer un nom de switch :**
+```
+hostname NOM_DU_SWITCH
+```
+
+### **Configurer un mot de passe :**
+```
+enable secret MOTDEPASSE
+```
+
+### **Configurer les ports (exemple pour le port FastEthernet 0/1) :**
+```
+interface FastEthernet 0/1
+description Connecté à PC1
+switchport mode access
+switchport access vlan 10
+exit
+```
+
+### **Configurer un VLAN :**
+```
+vlan 10
+name Vlan_10
+exit
+```
+
+### **Attribuer une IP de gestion au switch :**
+```
+interface vlan 1
+ip address 192.168.1.2 255.255.255.0
+no shutdown
+exit
+```
+
+---
+
+# **2. Configuration des VLANs Inter-Switch**
+### **Configurer le Trunk entre les switches :**
+```
+interface FastEthernet 0/1
+switchport mode trunk
+switchport trunk allowed vlan all
+exit
+```
+
+### **Afficher la configuration des VLANs :**
+```
+show vlan brief
+```
+
+---
+
+# **3. Configuration des Routeurs**
+### **Configurer une interface du routeur :**
+```
+enable
+configure terminal
+interface GigabitEthernet 0/0
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+exit
+```
+
+### **Configurer une passerelle par défaut :**
+```
+ip route 0.0.0.0 0.0.0.0 192.168.1.254
+```
+
+### **Activer le routage inter-VLAN (sur un routeur) :**
+```
+interface GigabitEthernet 0/0.10
+encapsulation dot1Q 10
+ip address 192.168.10.1 255.255.255.0
+no shutdown
+exit
+```
+
+---
+
+# **4. Gestion des Configurations**
+### **Enregistrer la configuration en cours :**
+```
+copy running-config startup-config
+```
+
+### **Afficher la configuration en cours :**
+```
+show running-config
+```
+
+### **Afficher la configuration enregistrée :**
+```
+show startup-config
+```
+
+### **Recharger le switch/routeur :**
+```
+reload
+```
+
+### **Effacer la configuration enregistrée :**
+```
+erase startup-config
+```
+
+---
+# Enable DHCP service on the router
+enable
+configure terminal
+
+# Create a DHCP pool
+ip dhcp pool Vlan10_DHCP            # Define the pool name
+network 192.168.10.0 255.255.255.0  # Define the network
+default-router 192.168.10.1         # Define the gateway
+dns-server 8.8.8.8                  # Set DNS server
+
+# Exclude specific IP addresses from DHCP
+ip dhcp excluded-address 192.168.10.1 192.168.10.10
+
+# Verify DHCP operation
+show ip dhcp binding                # Show DHCP clients
+show running-config                 # Confirm DHCP configuration
+
+
+Ces commandes couvrent les bases nécessaires pour configurer **Switches**, **VLANs**, **Routeurs**, et **enregistrer les configurations**. Si tu veux des configurations spécifiques plus détaillées, dis-le-moi ! 🚀
